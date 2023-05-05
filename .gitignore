@@ -1,5 +1,6 @@
 lib/
 lib64/
 
-*.key
+*.log
+apikey.txt
 data-april2023/
