@@ -66,7 +66,7 @@ with open("downloader.log", "w") as log_file:
       # check for errors, adding points with errors to the set invalid_points l. 44
       if response.status_code >= 400: 
         log_file.write(f"Error: {response.status_code} at geo {lat}-{lon}: {response.text}\r\n")
-        print(f"Error: {response.status_code} at geo {lat}-{lon}: {response.text}", file=sys.stderr)
+        print(f"Error: {response.status_code} at geo {lat}lat {lon}lon: {response.text}", file=sys.stderr)
         invalid_points.add((lat, lon))
         continue
       with open(f"data/{start_time}/{lat}_{lon}.json", "w") as file:
