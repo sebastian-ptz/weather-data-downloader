@@ -15,8 +15,8 @@ keyfile.close()
 
 #Creating needed Unix Timestamps
 date_format = "%Y-%m-%d %H:%M %Z"
-start_time = time.mktime(time.strptime("2023-03-31 23:00 UTC", date_format))
-end_time = time.mktime(time.strptime("2023-04-30 23:00 UTC", date_format))
+start_time = time.mktime(time.strptime("2022-12-31 23:00 UTC", date_format))
+end_time = time.mktime(time.strptime("2023-01-31 23:00 UTC", date_format))
 
 one_week = 60 * 60 * 24 * 7
 datapoints_per_week = 7 * 24
@@ -43,19 +43,22 @@ points = [point for points in point_lists for point in points]
 
 invalid_points = set()
 
-#os.mkdir("data")
+if not os.path.isdir(f"data"):
+  os.mkdir("data")
+  print(f"Directory data createad...")
+else: print(f"The direcory data already exists. Using existing directory...")
+
 with open("downloader.log", "w") as log_file:
   for week_index, (start_time, end_time) in enumerate(weeks): # enumerate weeks of month
     print(f"Starting download for week: {week_index + 1} of {len(weeks)}")
     if not os.path.isdir(f"data/{start_time}"):
       os.mkdir(f"data/{start_time}") # mkdir with unix timestamp for the start of a week
-    else:
-      print(f"The direcory {start_time} already exists")
+    else: print(f"\tThe direcory {start_time} already exists")
       
     for point_index, (lat, lon) in enumerate(points): # enemurate geo-points
       file_name = f"data/{start_time}/{lat}_{lon}.json"
       if os.path.isfile(file_name):
-        print(f"The file {file_name} already exists")
+        print(f"\tThe file {file_name} already exists")
         continue
       if (lat, lon) in invalid_points:
         continue
@@ -65,8 +68,8 @@ with open("downloader.log", "w") as log_file:
 
       # check for errors, adding points with errors to the set invalid_points l. 44
       if response.status_code >= 400: 
-        log_file.write(f"Error: {response.status_code} at geo {lat}-{lon}: {response.text}\r\n")
-        print(f"Error: {response.status_code} at geo {lat}lat {lon}lon: {response.text}", file=sys.stderr)
+        log_file.write(f"\tError: {response.status_code} at geo {lat}-{lon}: {response.text}\n")
+        print(f"\tError: {response.status_code} at geo {lat}lat {lon}lon: {response.text}", file=sys.stderr)
         invalid_points.add((lat, lon))
         continue
       with open(f"data/{start_time}/{lat}_{lon}.json", "w") as file:
