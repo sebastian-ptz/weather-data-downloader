@@ -4,5 +4,6 @@ lib64/
 *.log
 apikey.txt
 
-*/data*
+data/
+data*/
 .vscode/settings.json
