@@ -4,6 +4,5 @@ lib64/
 *.log
 apikey.txt
 
-data-march2023/
-data-april2023/
-data-februar2023/
+data-*/
+.vscode/settings.json
