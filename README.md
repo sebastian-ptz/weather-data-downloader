@@ -11,6 +11,7 @@ Diese Repository enthält ein Skript "downloader.py", welches andhand eines Zeit
 
 ## OpenWheaterMap
 - [API-Key: Historical Data - Medium Plan](https://openweathermap.org/full-price#history) 
+- Der API-Key muss in lokal in die Repository als Textdatei mit dem Namen keyfile.txt in eingefügt werden.
 
 ## Support
-sebastian.puetz@student.htw-berlin.de
+- sebastian.puetz@student.htw-berlin.de
