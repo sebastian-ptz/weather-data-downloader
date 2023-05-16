@@ -30,19 +30,19 @@ while curr < END_TIME:
 del (curr)
 # print(weeks)
 
-latitude_precision = 3.0  # Define how often a point is made
-latitude_count = int(1 + 180 / latitude_precision)
-# max num. of points on one hemisphere
+latitude_distance = 3.0  # Define how often a point is made
+latitude_count = int(1 + 180 / latitude_distance)
+# max numvers of points on one hemisphere
 max_longitude_count = latitude_count - 1
 
-# Saving data by using less point on poles where latitude and longitudes are closer to each other
+# Saving data by using less point on poles where latitudes and longitudes are closer
 number_of_points_per_lat = [max(1, math.ceil(math.sin(
                             math.pi * lon_index / max_longitude_count) * 
                             max_longitude_count)*2) 
     for lon_index in range(latitude_count)]
 
-# List of Geo-Coordination
-lat_lists = [[(lat_index * latitude_precision - 90, 
+# List of Geo-Coordination in a list of latititudes
+lat_lists = [[(lat_index * latitude_distance - 90, 
                (360 / number_of_points) * lon_index - 180)
                for lon_index in range(number_of_points)] for lat_index, 
                number_of_points in enumerate(number_of_points_per_lat)]
@@ -57,15 +57,15 @@ else:
     print(f"The direcory data already exists. Using existing directory...")
 
 with open("downloader.log", "w") as log_file:
-    for week_index, (START_TIME, END_TIME) in enumerate(weeks):  # enumerate weeks of month
+    for week_index, (START_TIME, END_TIME) in enumerate(weeks):
         print(f"Starting download for week: {week_index + 1} of {len(weeks)}")
         if not os.path.isdir(f"data/{START_TIME}"):
-            # mkdir with unix timestamp for the start of a week
-            os.mkdir(f"data/{START_TIME}")
+            #directoy with unix timestamp
+            os.mkdir(f"data/{START_TIME}") 
         else:
             print(f"\tThe direcory {START_TIME} already exists")
 
-        for index, (lat, lon) in enumerate(coords):  # enemurate geo-points
+        for index, (lat, lon) in enumerate(coords):
             file_name = f"data/{START_TIME}/{lat}_{lon}.json"
             if os.path.isfile(file_name):
                 print(f"\tThe file {file_name} already exists")
@@ -76,7 +76,7 @@ with open("downloader.log", "w") as log_file:
             response = requests.get(url)
             log_file.write(f"{url}\r\n")
 
-            # check for errors, adding points with errors to the set invalid_points l. 44
+            # check for errorcodes and add to set invalid_coords l.51
             if response.status_code >= 400:
                 log_file.write(
                     f"\tError: {response.status_code} at geo {lat}-{lon}: {response.text}\n")
