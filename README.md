@@ -16,3 +16,4 @@ Der API-Key muss lokal in der Repository in einer Textdatei mit dem Namen "keyfi
 
 ## Support
 - sebastian.puetz@student.htw-berlin.de
+- sebastian.ptz@outlook.com
