@@ -6,7 +6,7 @@ Diese Repository enthält ein Skript "downloader.py", welches andhand eines Zeit
 
 ## API-Key
 Der API-Key muss in lokal in die Repository als Textdatei mit dem Namen keyfile.txt in eingefügt werden.
-- [Historical Data - Pricing](https://openweathermap.org/full-price#history) 
+- [Historical Weather Collection - Pricing](https://openweathermap.org/full-price#history) 
 
 ## Installation
 - [Python 3.11](https://www.python.org/)
