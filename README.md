@@ -1,4 +1,4 @@
-# MRTK-HoloLens
+# Weather Data Downlaoader
 
 ## Beschreibung
 Weater Data Downloader enthält ein Skrip, um andhand eines Zeitraums Wetterdaten von OpenWheaterMap zu speichern. Es wird ein API-Key für historische Daten der OpenWheaterMap mindestens aus dem Medium Plan benötigt. Für Studierende bietet die Plattform eine Probeversion für 6 Monate an. Dieses Skript wurde für eine Abschlussarbeit im Internationel Studiengang - Bachelor verwendet.
